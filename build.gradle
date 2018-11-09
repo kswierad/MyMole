@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+
+description = """
+Project for course Objective technologies 2
+
+Project name: ${project.name}
+
+Authors:
+Kamil Świerad <kswierad@gmail.com>
+Aleksandra Gonera <goneraleksandra@gmail.com>
+Mikita Yakimovich <mikita.yakimovich@gmail.com>"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '0.1'
+
+mainClassName = 'pl.edu.agh.cs.to2.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
