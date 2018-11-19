@@ -3,8 +3,12 @@ package pl.edu.agh.cs.to2;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
@@ -30,11 +34,12 @@ public class Main extends Application{
         try {
             // load layout from FXML file
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/lol.fxml"));
+            loader.setLocation(Main.class.getResource("/main.fxml"));
             VBox rootLayout =  loader.load();
 
             // add layout to a scene and show them all
-            Scene scene = new Scene(rootLayout,600,480);
+            Scene scene = new Scene(rootLayout,800,800);
+
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {

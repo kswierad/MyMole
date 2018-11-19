@@ -1,0 +1,1 @@
+To run this project just go into the project main folder and type gradle run in console

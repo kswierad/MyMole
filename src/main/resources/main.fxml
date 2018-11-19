@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox fx:id="app_container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="app_container" fx:controller="pl.edu.agh.cs.to2.Controller.CanvasController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar>
         <menus>
@@ -33,7 +33,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Canvas height="500.0" width="800.0" />
+      <Canvas fx:id="img" height="500.0" width="800.0" />
       <GridPane prefHeight="30.0" prefWidth="803.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="775.0" minWidth="10.0" prefWidth="654.0" />
@@ -44,7 +44,7 @@
         </rowConstraints>
          <children>
             <TextField prefHeight="81.0" prefWidth="654.0" promptText="enter command" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="179.0" text="execute command" GridPane.columnIndex="1" />
+            <Button fx:id="exec" mnemonicParsing="false" prefHeight="30.0" prefWidth="179.0" text="execute command" onAction="#drawCanvas" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>
