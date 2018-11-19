@@ -4,7 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import pl.edu.agh.cs.to2.Model.Command.Command;
+import pl.edu.agh.cs.to2.Utils.CommandParser;
+
+
 
 
 public class CanvasController {
@@ -12,11 +17,19 @@ public class CanvasController {
     @FXML
     private Canvas img ;
 
+    private CommandParser parser;
+
     private GraphicsContext gc ;
 
-    @FXML private void drawCanvas(ActionEvent event) {
-        gc.setFill(Color.AQUA);
-        gc.fillRect(10,10,100,100);
+    @FXML
+    private TextField text;
+
+    @FXML private void parseAndAdd(ActionEvent event) {
+        Command command = parser.parse(text.getText());
+        
+
+
+
     }
 
     @FXML

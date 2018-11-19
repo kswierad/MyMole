@@ -43,8 +43,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField prefHeight="81.0" prefWidth="654.0" promptText="enter command" />
-            <Button fx:id="exec" mnemonicParsing="false" prefHeight="30.0" prefWidth="179.0" text="execute command" onAction="#drawCanvas" GridPane.columnIndex="1" />
+            <TextField fx:id="text" prefHeight="81.0" prefWidth="654.0" promptText="enter command" />
+            <Button fx:id="exec" mnemonicParsing="false" prefHeight="30.0" prefWidth="179.0" text="execute command" onAction="#parseAndAdd" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>
