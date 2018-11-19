@@ -33,7 +33,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Canvas fx:id="img" height="500.0" width="800.0" />
+      <Canvas fx:id="img" height="600.0" width="800.0" />
       <GridPane prefHeight="30.0" prefWidth="803.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="775.0" minWidth="10.0" prefWidth="654.0" />
