@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import pl.edu.agh.cs.to2.Model.Command.Command;
+import pl.edu.agh.cs.to2.Model.Mole;
 import pl.edu.agh.cs.to2.Utils.CommandParser;
 
 
@@ -21,12 +22,14 @@ public class CanvasController {
 
     private GraphicsContext gc ;
 
+    private Mole mole;
+
     @FXML
     private TextField text;
 
     @FXML private void parseAndAdd(ActionEvent event) {
         Command command = parser.parse(text.getText());
-        
+
 
 
 
@@ -34,6 +37,7 @@ public class CanvasController {
 
     @FXML
     public void initialize() {
+        mole = new Mole();
         gc = img.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
         System.out.println("color set to black");

@@ -10,7 +10,7 @@ public class Mole {
 
     public Direction getDirection(){return this.direction; }
 
-    public  executeCommand(Command command){
+    public  void executeCommand(Command command){
 
     }
 
