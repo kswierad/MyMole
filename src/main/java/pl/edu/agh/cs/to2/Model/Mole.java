@@ -45,6 +45,7 @@ public class Mole {
                         coords = new Coordinates(coords,command.value,0);
                         break;
                 }
+                break;
             case BACKWARD:
                 switch (direction){
                     case UP:
@@ -60,8 +61,8 @@ public class Mole {
                         coords = new Coordinates(coords,-command.value,0);
                         break;
                 }
+                break;
         }
-
         commands.add(command);
 
     }

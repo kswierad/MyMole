@@ -28,10 +28,14 @@ public class CanvasController {
 
     @FXML private void parseAndAdd(ActionEvent event) {
         Command command = parser.parse(text.getText());
-        Coordinates oldCoord = new Coordinates(mole.getCoords());
+        Coordinates oldCoord = mole.getCoords();
+
         clearMole();
         System.out.println("Moving Mole");
+
         mole.execute(command);
+        System.out.println(oldCoord);
+        System.out.println(mole.getCoords());
         drawPath(oldCoord,mole.getCoords());
         drawMole();
 
@@ -53,7 +57,7 @@ public class CanvasController {
 
     public void clearMole(){
         gc.setFill(Color.WHITE);
-        gc.fillOval(mole.getCoords().getX(),mole.getCoords().getY(),10,30);
+        gc.fillOval(mole.getCoords().getX(),mole.getCoords().getY(),30,30);
     }
 
     public void drawPath(Coordinates oldCoord, Coordinates newCoord){

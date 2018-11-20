@@ -9,6 +9,7 @@ public class CommandParser {
 
     public Command parse(String textCommand){
 
+        
         return new Command(50,CommandType.FORWARD);
     }
 }
