@@ -15,11 +15,16 @@ import pl.edu.agh.cs.to2.Utils.Coordinates;
 public class CanvasController {
 
     @FXML
-    private Canvas img ;
+    private Canvas foreground;
+
+    @FXML
+    private Canvas background;
 
     private CommandParser parser;
 
-    private GraphicsContext gc ;
+    private GraphicsContext gcfg ;
+
+    private GraphicsContext gcbg ;
 
     private Mole mole;
 
@@ -45,24 +50,24 @@ public class CanvasController {
     public void initialize() {
         parser = new CommandParser();
         mole = new Mole();
-        gc = img.getGraphicsContext2D();
+        gcfg = foreground.getGraphicsContext2D();
+        gcbg = background.getGraphicsContext2D();
         System.out.println("Drawing Mole");
         drawMole();
     }
 
     public void drawMole(){
-        gc.setFill(Color.AQUA);
-        gc.fillOval(mole.getCoords().getX(),mole.getCoords().getY(),30,30);
+        gcfg.setFill(Color.AQUA);
+        gcfg.fillOval(mole.getCoords().getX(),mole.getCoords().getY(),30,30);
     }
 
     public void clearMole(){
-        gc.setFill(Color.WHITE);
-        gc.fillOval(mole.getCoords().getX(),mole.getCoords().getY(),30,30);
+        gcfg.clearRect(0,0,foreground.getHeight(),foreground.getWidth());
     }
 
     public void drawPath(Coordinates oldCoord, Coordinates newCoord){
-        gc.setStroke(Color.BLACK);
-        gc.strokeLine(oldCoord.getX(),oldCoord.getY(),newCoord.getX(),newCoord.getY());
+        gcbg.setStroke(Color.BLACK);
+        gcbg.strokeLine(oldCoord.getX(),oldCoord.getY(),newCoord.getX(),newCoord.getY());
     }
 
 }
