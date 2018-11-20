@@ -6,11 +6,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import pl.edu.agh.cs.to2.Model.Command.Command;
+import pl.edu.agh.cs.to2.Model.Command;
 import pl.edu.agh.cs.to2.Model.Mole;
 import pl.edu.agh.cs.to2.Utils.CommandParser;
-
-
+import pl.edu.agh.cs.to2.Utils.Coordinates;
 
 
 public class CanvasController {
@@ -29,20 +28,37 @@ public class CanvasController {
 
     @FXML private void parseAndAdd(ActionEvent event) {
         Command command = parser.parse(text.getText());
-
-
-
+        Coordinates oldCoord = new Coordinates(mole.getCoords());
+        clearMole();
+        System.out.println("Moving Mole");
+        mole.execute(command);
+        drawPath(oldCoord,mole.getCoords());
+        drawMole();
 
     }
 
     @FXML
     public void initialize() {
+        parser = new CommandParser();
         mole = new Mole();
         gc = img.getGraphicsContext2D();
-        gc.setFill(Color.BLACK);
-        System.out.println("color set to black");
-        gc.fillRect(50, 50, 100, 100);
-        System.out.println("draw rectangle");
+        System.out.println("Drawing Mole");
+        drawMole();
+    }
+
+    public void drawMole(){
+        gc.setFill(Color.AQUA);
+        gc.fillOval(mole.getCoords().getX(),mole.getCoords().getY(),30,30);
+    }
+
+    public void clearMole(){
+        gc.setFill(Color.WHITE);
+        gc.fillOval(mole.getCoords().getX(),mole.getCoords().getY(),10,30);
+    }
+
+    public void drawPath(Coordinates oldCoord, Coordinates newCoord){
+        gc.setStroke(Color.BLACK);
+        gc.strokeLine(oldCoord.getX(),oldCoord.getY(),newCoord.getX(),newCoord.getY());
     }
 
 }

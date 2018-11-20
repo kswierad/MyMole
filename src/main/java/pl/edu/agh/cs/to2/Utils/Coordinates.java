@@ -13,4 +13,11 @@ public class Coordinates {
         this.x = oldCoord.x + moveX;
         this.y = oldCoord.y + moveY;
     }
+
+    public Coordinates(Coordinates oldCoord){
+        this.x = oldCoord.x;
+        this.y = oldCoord.y;
+    }
+    public int getX(){return x;}
+    public int getY(){return y;}
 }
