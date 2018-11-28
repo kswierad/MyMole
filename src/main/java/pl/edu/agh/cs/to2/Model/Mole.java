@@ -1,8 +1,5 @@
 package pl.edu.agh.cs.to2.Model;
 
-import pl.edu.agh.cs.to2.Utils.Coordinates;
-import pl.edu.agh.cs.to2.Utils.Direction;
-
 import java.util.LinkedList;
 
 public class Mole {

@@ -1,4 +1,4 @@
-package pl.edu.agh.cs.to2.Utils;
+package pl.edu.agh.cs.to2.Model;
 
 public enum Direction {
         LEFT,RIGHT,UP,DOWN;

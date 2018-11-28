@@ -8,8 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import pl.edu.agh.cs.to2.Model.Command;
 import pl.edu.agh.cs.to2.Model.Mole;
-import pl.edu.agh.cs.to2.Utils.CommandParser;
-import pl.edu.agh.cs.to2.Utils.Coordinates;
+import pl.edu.agh.cs.to2.Model.CommandParser;
+import pl.edu.agh.cs.to2.Model.Coordinates;
 
 
 public class CanvasController {

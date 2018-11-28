@@ -1,7 +1,6 @@
-package pl.edu.agh.cs.to2.Utils;
+package pl.edu.agh.cs.to2.Model;
 
 import jdk.nashorn.internal.runtime.ParserException;
-import pl.edu.agh.cs.to2.Model.Command;
 
 public class CommandParser {
 

@@ -3,6 +3,7 @@
 /bin/
 /gradle
 gradlew
+gradle-app.setting
 gradlew.bat
 out/
 .idea/
