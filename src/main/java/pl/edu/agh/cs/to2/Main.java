@@ -38,7 +38,7 @@ public class Main extends Application{
             VBox rootLayout =  loader.load();
 
             // add layout to a scene and show them all
-            Scene scene = new Scene(rootLayout,800,1000);
+            Scene scene = new Scene(rootLayout,800,800);
 
             primaryStage.setScene(scene);
             primaryStage.show();

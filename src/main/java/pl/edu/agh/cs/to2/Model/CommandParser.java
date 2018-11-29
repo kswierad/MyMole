@@ -1,8 +1,8 @@
 package pl.edu.agh.cs.to2.Model;
 
-import jdk.nashorn.internal.runtime.ParserException;
 import pl.edu.agh.cs.to2.Model.Command.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +11,7 @@ public class CommandParser {
 
 
 
-    public List<Command> parse(String textCommand){
-        System.out.print(textCommand);
+    public List<Command> parse(String textCommand) throws ParseException{
         List<List<Command>> commands = new ArrayList<>();
         int loopCounter=0;
         commands.add(new ArrayList<>());
@@ -41,7 +40,7 @@ public class CommandParser {
                 loopCounter++;
                 commands.add(command.getCommands());
             } else{
-                throw new ParserException("Couldn't resolve command type");
+                throw new ParseException("Couldn't resolve command type",0);
             }
 
         }
