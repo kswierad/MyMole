@@ -5,14 +5,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox fx:id="app_container" fx:controller="pl.edu.agh.cs.to2.Controller.CanvasController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<VBox fx:id="app_container" fx:controller="pl.edu.agh.cs.to2.Controller.CanvasController" maxHeight="Infinity" maxWidth="Infinity"
+      minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar>
         <menus>
@@ -35,17 +36,18 @@
       </MenuBar>
       <Canvas fx:id="background" height="600.0" width="800.0" />
       <Canvas fx:id="foreground" height="600.0" width="800.0" translateY="-600"/>
-      <GridPane prefHeight="30.0" prefWidth="803.0" translateY="-600">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="775.0" minWidth="10.0" prefWidth="654.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="146.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <GridPane prefHeight="400.0" prefWidth="803.0" translateY="-600">
+          <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="775.0" minWidth="10.0" prefWidth="654.0" />
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="146.0" />
+          </columnConstraints>
+          <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+          </rowConstraints>
          <children>
-            <TextField fx:id="text" prefHeight="81.0" prefWidth="654.0" promptText="enter command" />
-            <Button fx:id="exec" mnemonicParsing="false" prefHeight="30.0" prefWidth="179.0" text="execute command" onAction="#parseAndAdd" GridPane.columnIndex="1" />
+            <TextArea fx:id="text" prefHeight="400.0" prefWidth="654.0" promptText="enter command" />
+            <Button fx:id="exec" mnemonicParsing="false" prefHeight="30.0" prefWidth="179.0" text="Execute commands" onAction="#parseAndAdd" GridPane.columnIndex="1" />
+             <Button fx:id="reset" mnemonicParsing="false" prefHeight="30.0" prefWidth="179.0" translateY="30" text="Reset" onAction="#reset" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>

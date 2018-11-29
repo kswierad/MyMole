@@ -1,17 +1,22 @@
 package pl.edu.agh.cs.to2.Controller;
 
-import javafx.beans.value.ChangeListener;
+import ch.obermuhlner.math.big.BigDecimalMath;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import pl.edu.agh.cs.to2.Model.Command.Command;
 import pl.edu.agh.cs.to2.Model.Mole;
 import pl.edu.agh.cs.to2.Model.CommandParser;
 import pl.edu.agh.cs.to2.Model.Coordinates;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.util.List;
 
 
 public class CanvasController {
@@ -31,17 +36,25 @@ public class CanvasController {
     private Mole mole;
 
     @FXML
-    private TextField text;
+    private TextArea text;
+
+    @FXML private void reset(ActionEvent event){
+        mole = new Mole();
+        clearAndDrawMole();
+        gcbg.clearRect(0,0,background.getHeight(),background.getWidth());
+    }
 
     @FXML private void parseAndAdd(ActionEvent event) {
-        Command command = parser.parse(text.getText());
+        List<Command> commands = parser.parse(text.getText());
         Coordinates oldCoord = mole.getCoords();
 
         System.out.println("Moving Mole");
+        for(Command cmd : commands) cmd.execute(mole);
 
-        command.execute(mole);
         System.out.println(oldCoord);
-        System.out.println(mole.getCoords());
+        System.out.print(mole.getCoords());
+        System.out.print(" ");
+        System.out.println(mole.getAngle().divide(BigDecimalMath.pi(new MathContext(50)), new MathContext(50)));
 
     }
 

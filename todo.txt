@@ -1,6 +1,6 @@
 pełna aplikacja
-pętla
-wiele komend na raz
++pętla
++wiele komend na raz
 sprawdzanie poprawności
 5 lekcji
 łatowść definiowania lekcji
