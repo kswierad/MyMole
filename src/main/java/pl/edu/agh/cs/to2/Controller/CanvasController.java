@@ -1,12 +1,14 @@
 package pl.edu.agh.cs.to2.Controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import pl.edu.agh.cs.to2.Model.Command;
+import pl.edu.agh.cs.to2.Model.Command.Command;
 import pl.edu.agh.cs.to2.Model.Mole;
 import pl.edu.agh.cs.to2.Model.CommandParser;
 import pl.edu.agh.cs.to2.Model.Coordinates;
@@ -35,14 +37,11 @@ public class CanvasController {
         Command command = parser.parse(text.getText());
         Coordinates oldCoord = mole.getCoords();
 
-        clearMole();
         System.out.println("Moving Mole");
 
-        mole.execute(command);
+        command.execute(mole);
         System.out.println(oldCoord);
         System.out.println(mole.getCoords());
-        drawPath(oldCoord,mole.getCoords());
-        drawMole();
 
     }
 
@@ -50,6 +49,13 @@ public class CanvasController {
     public void initialize() {
         parser = new CommandParser();
         mole = new Mole();
+        mole.AngleProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) ->
+                    clearAndDrawMole()
+                );
+        mole.CoordsProperty().addListener((ObservableValue<? extends Coordinates> observableValue, Coordinates coordinates, Coordinates t1) -> {
+                drawPath(coordinates,t1);
+                clearAndDrawMole();
+            });
         gcfg = foreground.getGraphicsContext2D();
         gcbg = background.getGraphicsContext2D();
         System.out.println("Drawing Mole");
@@ -58,11 +64,13 @@ public class CanvasController {
 
     public void drawMole(){
         gcfg.setFill(Color.AQUA);
-        gcfg.fillOval(mole.getCoords().getX(),mole.getCoords().getY(),30,30);
+        gcfg.fillOval(mole.getCoords().getX()-15,mole.getCoords().getY()-15,30,30);
     }
 
-    public void clearMole(){
+    public void clearAndDrawMole(){
         gcfg.clearRect(0,0,foreground.getHeight(),foreground.getWidth());
+        gcfg.setFill(Color.AQUA);
+        gcfg.fillOval(mole.getCoords().getX()-15,mole.getCoords().getY()-15,30,30);
     }
 
     public void drawPath(Coordinates oldCoord, Coordinates newCoord){

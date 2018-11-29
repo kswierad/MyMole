@@ -1,6 +1,7 @@
 package pl.edu.agh.cs.to2.Model;
 
 import jdk.nashorn.internal.runtime.ParserException;
+import pl.edu.agh.cs.to2.Model.Command.*;
 
 public class CommandParser {
 
@@ -8,19 +9,24 @@ public class CommandParser {
 
 
     public Command parse(String textCommand){
-        CommandType type = null;
-        if(textCommand.matches("FORWARD.*"))
-            type = CommandType.FORWARD;
-        if(textCommand.matches("BACKWARD.*"))
-            type = CommandType.BACKWARD;
-        if(textCommand.matches("LEFT.*"))
-            type = CommandType.LEFT;
-        if(textCommand.matches("RIGHT.*"))
-            type = CommandType.RIGHT;
-        if(type == null) throw new ParserException("Couldn't resolve command type");
-        int val =Integer.parseInt(textCommand.split(" ")[1]);
+        if(textCommand.matches("FORWARD.*")){
+            int distance =Integer.parseInt(textCommand.split(" ")[1]);
+            return new ForwardCommand(distance);
+        }
 
+        if(textCommand.matches("BACKWARD.*")){
+            int distance =Integer.parseInt(textCommand.split(" ")[1]);
+            return new BackwardCommand(distance);
+        }
+        if(textCommand.matches("LEFT.*")){
+            double angle = Double.parseDouble(textCommand.split(" ")[1]);
+            return new LeftCommand(angle);
+        }
+        if(textCommand.matches("RIGHT.*")){
+            double angle = Double.parseDouble(textCommand.split(" ")[1]);
+            return new RightCommand(angle);
+        }
+        throw new ParserException("Couldn't resolve command type");
 
-        return new Command(val, type);
     }
 }
