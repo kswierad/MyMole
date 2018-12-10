@@ -9,9 +9,9 @@ public class Point {
         this.y = y;
     }
 
-    public Point(Point oldCoord, int moveX, int moveY){
-        this.x = oldCoord.x + moveX;
-        this.y = oldCoord.y + moveY;
+    public Point(Point oldPoint, int moveX, int moveY){
+        this.x = oldPoint.x + moveX;
+        this.y = oldPoint.y + moveY;
     }
 
     public Point(Point oldCoord){

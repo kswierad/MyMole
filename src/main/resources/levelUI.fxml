@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="pl.edu.agh.cs.to2.Controller.LevelUIController"
+            prefHeight="800.0" prefWidth="200.0" translateX="800.0" translateY="-1800.0">
+        <children>
+            <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
+                <children>
+                    <Text fx:id="levelNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1" />
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;Your job is to follow the grey lines&#10;" />
+                </children></TextFlow>
+            <Button fx:id="previous" mnemonicParsing="false" text="Previous" translateY="200.0" />
+            <Button fx:id="next" mnemonicParsing="false" text="Next" textFill="#141212" translateX="120.0" translateY="200.0" />
+        </children>
+</AnchorPane>

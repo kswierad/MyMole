@@ -12,8 +12,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import pl.edu.agh.cs.to2.Command.Command;
 import pl.edu.agh.cs.to2.Model.*;
+import pl.edu.agh.cs.to2.Model.LevelGenerator.LevelGenerator;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -22,7 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class CanvasController {
+public class AppController {
 
     static private final MathContext mathContext = new MathContext(100);
     @FXML
@@ -44,20 +46,66 @@ public class CanvasController {
 
     private Mole mole;
 
+    private List<Level> levels;
+
+    private int levelNumber;
+
     @FXML
-    private TextArea text;
+    private Text levelIndicator;
+
+    @FXML
+    private void next(ActionEvent event){
+        if(levelNumber + 1 == levels.size()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No more levels");
+            alert.setHeaderText("There is no more levels :(");
+            alert.setContentText("We are sorry, but currently this is the last level");
+
+            alert.showAndWait();
+            return;
+        }
+        reset(null);
+        levelNumber++;
+        levelIndicator.setText("Level " + (levelNumber+1));
+        mole.CoordsProperty().addListener(new Checker(levels.get(levelNumber)));
+        drawLevel(levels.get(levelNumber));
+    }
+
+    @FXML
+    private void previous(ActionEvent event){
+        if(levelNumber == 0){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No more levels");
+            alert.setHeaderText("YOU ARE ON THE FIRST LEVEL");
+            alert.setContentText("You can't go back, when on first level");
+
+            alert.showAndWait();
+            return;
+        }
+
+        reset(null);
+        levelNumber--;
+        levelIndicator.setText("Level " + (levelNumber+1));
+        mole.CoordsProperty().addListener(new Checker(levels.get(levelNumber)));
+        drawLevel(levels.get(levelNumber));
+    }
+
+    @FXML
+    private TextArea commandText;
 
     @FXML private void reset(ActionEvent event){
         mole = new Mole();
         setListenersOnMole();
         clearAndDrawMole();
         gcbg.clearRect(0,0,background.getWidth(),background.getHeight());
+        mole.CoordsProperty().addListener(new Checker(levels.get(levelNumber)));
+        drawLevel(levels.get(levelNumber));
     }
 
     @FXML private void parseAndAdd(ActionEvent event) {
         List<Command> commands;
         try {
-            commands = parser.parse(text.getText());
+            commands = parser.parse(commandText.getText());
         }catch (ParseException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Wrong commands");
@@ -91,14 +139,11 @@ public class CanvasController {
         gcfg = foreground.getGraphicsContext2D();
         gcbg = background.getGraphicsContext2D();
         exmpl = example.getGraphicsContext2D();
-        LinkedList<Point> list = new LinkedList<>();
-        list.add(new Point(300, 400));
-        list.add(new Point(400, 400));
-        list.add(new Point(400, 300));
-        list.add(new Point(300, 300));
-        Level lvl1 = new Level(list);
-        drawExample(lvl1);
-        mole.CoordsProperty().addListener(new Checker(lvl1));
+        LevelGenerator generator = new LevelGenerator();
+        levels = generator.generate();
+        levelNumber = 0;
+        mole.CoordsProperty().addListener(new Checker(levels.get(levelNumber)));
+        drawLevel(levels.get(levelNumber));
         System.out.println("Drawing Mole");
         drawMole();
     }
@@ -124,11 +169,11 @@ public class CanvasController {
 
     public void clearAndDrawMole(){
         gcfg.clearRect(0,0,foreground.getWidth(),foreground.getHeight());
-        gcfg.setFill(Color.AQUA);
         drawMole();
     }
 
-    public void drawExample(Level lvl){
+    public void drawLevel(Level lvl){
+        exmpl.clearRect(0,0,example.getWidth(),example.getHeight());
         exmpl.setStroke(Color.LIGHTGRAY);
         for(Vector vec : lvl.getVectors()) {
             exmpl.strokeLine(vec.getStart().getX(), vec.getStart().getY(), vec.getEnd().getX(), vec.getEnd().getY());

@@ -8,8 +8,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<VBox fx:id="app_container" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="789.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.cs.to2.Controller.CanvasController">
+<VBox fx:id="app_container" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.cs.to2.Controller.AppController">
    <children>
       <MenuBar>
         <menus>
@@ -30,14 +32,25 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Canvas fx:id="background" height="600.0" width="800.0" />
-      <Canvas fx:id="foreground" height="600.0" translateY="-600" width="800.0" />
+       <Canvas fx:id="background" height="600.0" width="800.0" />
+       <Canvas fx:id="foreground" height="600.0" translateY="-600" width="800.0" />
        <Canvas fx:id="example" height="600.0" translateY="-1200" width="800.0" />
-      <Pane prefHeight="0.0" prefWidth="801.0" translateY="-1200.0">
+       <Pane prefHeight="0.0" prefWidth="801.0" translateY="-1200.0">
          <children>
-            <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="200.0" text="Reset" translateX="600.0" translateY="30.0" />
-            <Button fx:id="exec" mnemonicParsing="false" onAction="#parseAndAdd" prefHeight="30.0" prefWidth="200.0" text="Execute commands" translateX="600.0" />
-            <TextArea fx:id="text" prefHeight="160.0" prefWidth="600.0" promptText="enter command" />
+            <Button mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="200.0" text="Reset" translateX="600.0" translateY="30.0" />
+            <Button mnemonicParsing="false" onAction="#parseAndAdd" prefHeight="30.0" prefWidth="200.0" text="Execute commands" translateX="600.0" />
+            <TextArea fx:id="commandText" prefHeight="170.0" prefWidth="600.0" promptText="enter command" />
+         </children>
+      </Pane>
+      <Pane prefHeight="800.0" prefWidth="200.0" translateX="800.0" translateY="-1800.0">
+         <children>
+            <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
+               <children>
+                  <Text fx:id="levelIndicator" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;Your job is to follow the grey lines&#10;" />
+               </children></TextFlow>
+            <Button onAction="#previous" mnemonicParsing="false" text="Previous" translateY="200.0" />
+            <Button onAction="#next" mnemonicParsing="false" text="Next" textFill="#141212" translateX="120.0" translateY="200.0" />
          </children>
       </Pane>
    </children>
