@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="app_container" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="789.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.cs.to2.Controller.CanvasController">
+<VBox fx:id="app_container" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="789.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.cs.to2.Controller.CanvasController">
    <children>
       <MenuBar>
         <menus>
@@ -32,7 +32,8 @@
       </MenuBar>
       <Canvas fx:id="background" height="600.0" width="800.0" />
       <Canvas fx:id="foreground" height="600.0" translateY="-600" width="800.0" />
-      <Pane prefHeight="0.0" prefWidth="801.0" translateY="-600.0">
+       <Canvas fx:id="example" height="600.0" translateY="-1200" width="800.0" />
+      <Pane prefHeight="0.0" prefWidth="801.0" translateY="-1200.0">
          <children>
             <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="200.0" text="Reset" translateX="600.0" translateY="30.0" />
             <Button fx:id="exec" mnemonicParsing="false" onAction="#parseAndAdd" prefHeight="30.0" prefWidth="200.0" text="Execute commands" translateX="600.0" />

@@ -1,4 +1,4 @@
-package pl.edu.agh.cs.to2.Model.Command;
+package pl.edu.agh.cs.to2.Command;
 
 import pl.edu.agh.cs.to2.Model.Mole;
 import ch.obermuhlner.math.big.*;

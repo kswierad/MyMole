@@ -1,6 +1,6 @@
 package pl.edu.agh.cs.to2.Model;
 
-import pl.edu.agh.cs.to2.Model.Command.*;
+import pl.edu.agh.cs.to2.Command.*;
 
 import java.text.ParseException;
 import java.util.ArrayList;

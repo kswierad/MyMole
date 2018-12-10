@@ -1,14 +1,12 @@
-package pl.edu.agh.cs.to2.Model.Command;
+package pl.edu.agh.cs.to2.Command;
 
-import pl.edu.agh.cs.to2.Model.Coordinates;
+import pl.edu.agh.cs.to2.Model.Point;
 import pl.edu.agh.cs.to2.Model.Mole;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.MathContext;
 
 import ch.obermuhlner.math.big.*;
-import static java.lang.Math.*;
 
 public class BackwardCommand implements Command {
 
@@ -23,8 +21,8 @@ public class BackwardCommand implements Command {
     @Override
     public void execute(Mole mole){
         BigDecimal angle = mole.getAngle();
-        Coordinates coordinates = mole.getCoords();
-        Coordinates newcoords = new Coordinates(coordinates, BigDecimalMath.cos(angle,mathContext).multiply(new BigDecimal(-distance)).intValue(),
+        Point point = mole.getPoint();
+        Point newcoords = new Point(point, BigDecimalMath.cos(angle,mathContext).multiply(new BigDecimal(-distance)).intValue(),
                                         BigDecimalMath.sin(angle,mathContext).multiply(new BigDecimal(-distance)).intValue());
         mole.setCoords(newcoords);
 
