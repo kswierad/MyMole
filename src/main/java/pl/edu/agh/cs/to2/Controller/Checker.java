@@ -25,6 +25,7 @@ public class Checker implements ChangeListener<Point> {
     private Vector currentVector;
 
     public void changed(ObservableValue<? extends Point> observableValue, Point oldC, Point newC){
+        System.out.println(" vector end: " + currentVector.getEnd() + " \n new pos: " + newC);
         if(currentVector.getEnd().isEqual(newC)){
             if(vectorIterator.hasNext()){
                 currentVector = vectorIterator.next();

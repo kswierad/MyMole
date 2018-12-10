@@ -64,11 +64,10 @@ public class AppController {
             alert.showAndWait();
             return;
         }
-        reset(null);
+
         levelNumber++;
         levelIndicator.setText("Level " + (levelNumber+1));
-        mole.CoordsProperty().addListener(new Checker(levels.get(levelNumber)));
-        drawLevel(levels.get(levelNumber));
+        reset(null);
     }
 
     @FXML
@@ -83,11 +82,10 @@ public class AppController {
             return;
         }
 
-        reset(null);
+
         levelNumber--;
         levelIndicator.setText("Level " + (levelNumber+1));
-        mole.CoordsProperty().addListener(new Checker(levels.get(levelNumber)));
-        drawLevel(levels.get(levelNumber));
+        reset(null);
     }
 
     @FXML

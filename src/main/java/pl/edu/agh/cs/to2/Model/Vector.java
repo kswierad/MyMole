@@ -28,6 +28,6 @@ public class Vector {
         if(start.getY() == end.getY())
             return point.getY() == start.getY();
         double slope =  (double)(end.getY() - start.getY())/ (double)(end.getX() - start.getX());
-        return Math.abs(slope* (point.getX() - start.getX()) - point.getY()) < 5;
+        return Math.abs(slope* (point.getX() - start.getX()) - point.getY()) < 5.0;
     }
 }

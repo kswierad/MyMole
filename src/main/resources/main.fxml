@@ -32,9 +32,10 @@
           </Menu>
         </menus>
       </MenuBar>
-       <Canvas fx:id="background" height="600.0" width="800.0" />
-       <Canvas fx:id="foreground" height="600.0" translateY="-600" width="800.0" />
-       <Canvas fx:id="example" height="600.0" translateY="-1200" width="800.0" />
+       <Canvas fx:id="example" height="600.0"  width="800.0" />
+       <Canvas fx:id="background" height="600.0" width="800.0" translateY="-600"/>
+       <Canvas fx:id="foreground" height="600.0" translateY="-1200" width="800.0" />
+
        <Pane prefHeight="0.0" prefWidth="801.0" translateY="-1200.0">
          <children>
             <Button mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="200.0" text="Reset" translateX="600.0" translateY="30.0" />
