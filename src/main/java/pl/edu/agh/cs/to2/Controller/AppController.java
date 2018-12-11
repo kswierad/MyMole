@@ -54,6 +54,9 @@ public class AppController {
     private Text levelIndicator;
 
     @FXML
+    private Text levelDesc;
+
+    @FXML
     private void next(ActionEvent event){
         if(levelNumber + 1 == levels.size()){
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -66,6 +69,7 @@ public class AppController {
         }
 
         levelNumber++;
+        levelDesc.setText(levels.get(levelNumber).getDescription());
         levelIndicator.setText("Level " + (levelNumber+1));
         reset(null);
     }
@@ -84,6 +88,7 @@ public class AppController {
 
 
         levelNumber--;
+        levelDesc.setText(levels.get(levelNumber).getDescription());
         levelIndicator.setText("Level " + (levelNumber+1));
         reset(null);
     }
@@ -140,6 +145,7 @@ public class AppController {
         LevelGenerator generator = new LevelGenerator();
         levels = generator.generate();
         levelNumber = 0;
+        levelDesc.setText(levels.get(levelNumber).getDescription());
         mole.CoordsProperty().addListener(new Checker(levels.get(levelNumber)));
         drawLevel(levels.get(levelNumber));
         System.out.println("Drawing Mole");

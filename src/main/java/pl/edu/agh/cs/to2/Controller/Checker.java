@@ -9,42 +9,87 @@ import pl.edu.agh.cs.to2.Model.Level;
 import pl.edu.agh.cs.to2.Model.Vector;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class Checker implements ChangeListener<Point> {
 
     public Checker(Level template){
         this.level = template;
-        vectorIterator = template.getVectors().iterator();
-        if(vectorIterator.hasNext()) currentVector = vectorIterator.next();
     }
 
     private Level level;
 
-    private Iterator<Vector> vectorIterator;
+    private Boolean toRight = null;
+
+    private ListIterator<Vector> vectorIterator;
 
     private Vector currentVector;
 
     public void changed(ObservableValue<? extends Point> observableValue, Point oldC, Point newC){
-        System.out.println(" vector end: " + currentVector.getEnd() + " \n new pos: " + newC);
-        if(currentVector.getEnd().isEqual(newC)){
-            if(vectorIterator.hasNext()){
+        if(toRight == null){
+            if(level.getVectors().get(level.getVectors().size()-1).getStart().isEqual(newC)){
+                toRight = false;
+                vectorIterator = level.getVectors().listIterator(level.getVectors().size());
+                currentVector = vectorIterator.previous();
+                //System.out.println("Left \n" + currentVector);
+
+            } else if(level.getVectors().get(level.getVectors().size()-1).contains(newC)){
+                toRight = false;
+                vectorIterator = level.getVectors().listIterator(level.getVectors().size());
+                currentVector = vectorIterator.previous();
+                //System.out.println("Left \n" + currentVector);
+
+            } else {
+
+                toRight = true;
+                vectorIterator = level.getVectors().listIterator();
                 currentVector = vectorIterator.next();
+                //System.out.println("Right\n" + currentVector);
             }
-            else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Victory");
-                alert.setHeaderText("You matched the level!");
-                alert.setContentText("Congratulations you beat this level!");
-                alert.showAndWait();
+
+        }
+        if(!toRight){
+            //System.out.println("cur: " + currentVector + " newC: " + newC);
+            if (currentVector.getStart().isEqual(newC)) {
+                if (vectorIterator.hasPrevious()) {
+                    currentVector = vectorIterator.previous();
+                } else {
+                    alertVictory();
+                }
+            } else {
+                if (!currentVector.contains(newC)) {
+                    alertMistake();
+                }
             }
         } else {
-            if(!currentVector.contains(newC)){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Mistake");
-                alert.setHeaderText("You didn't match the level");
-                alert.setContentText("You have to follow the grey line!");
-                alert.showAndWait();
+            //System.out.println("cur: " + currentVector + " newC: " + newC);
+            if (currentVector.getEnd().isEqual(newC)) {
+                if (vectorIterator.hasNext()) {
+                    currentVector = vectorIterator.next();
+                } else {
+                    alertVictory();
+                }
+            } else {
+                if (!currentVector.contains(newC)) {
+                    alertMistake();
+                }
             }
         }
+    }
+
+    private void alertMistake(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Mistake");
+        alert.setHeaderText("You didn't match the level");
+        alert.setContentText("You have to follow the grey line!");
+        alert.showAndWait();
+    }
+
+    private void alertVictory(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Victory");
+        alert.setHeaderText("You matched the level!");
+        alert.setContentText("Congratulations you beat this level!");
+        alert.showAndWait();
     }
 }

@@ -48,7 +48,7 @@
             <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
                <children>
                   <Text fx:id="levelIndicator" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;Your job is to follow the grey lines&#10;" />
+                  <Text fx:id= "levelDesc" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;Your job is to follow the grey lines&#10;" />
                </children></TextFlow>
             <Button onAction="#previous" mnemonicParsing="false" text="Previous" translateY="200.0" />
             <Button onAction="#next" mnemonicParsing="false" text="Next" textFill="#141212" translateX="120.0" translateY="200.0" />

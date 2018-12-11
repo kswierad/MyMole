@@ -19,9 +19,6 @@ public class Vector {
         this.end = end;
     }
 
-
-
-
     public Boolean contains(Point point){
         if(start.getX() == end.getX())
             return point.getX()==start.getX();
@@ -29,5 +26,10 @@ public class Vector {
             return point.getY() == start.getY();
         double slope =  (double)(end.getY() - start.getY())/ (double)(end.getX() - start.getX());
         return Math.abs(slope* (point.getX() - start.getX()) - point.getY()) < 5.0;
+    }
+
+    @Override
+    public String toString(){
+        return start + " ->" + end;
     }
 }
