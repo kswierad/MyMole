@@ -1,72 +1,35 @@
 package pl.edu.agh.cs.to2.Model;
 
-import pl.edu.agh.cs.to2.Utils.Coordinates;
-import pl.edu.agh.cs.to2.Utils.Direction;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
-import java.util.LinkedList;
+import java.math.BigDecimal;
 
 public class Mole {
-    private Direction direction;
-    private Coordinates coords;
-    private LinkedList<Command> commands = new LinkedList<>();
+    private ObjectProperty<BigDecimal> angle = new SimpleObjectProperty<>();
+    private ObjectProperty<Point> coords = new SimpleObjectProperty<>();
+    private Boolean isDown;
 
-    public Direction getDirection(){return this.direction; }
-    public Coordinates getCoords(){return coords;}
+    public BigDecimal getAngle(){return this.angle.getValue(); }
+    public Point getPoint(){return coords.getValue();}
+    public void setAngle(BigDecimal angle){ this.angle.setValue(angle); }
+    public void setCoords(Point point){ this.coords.setValue(point); }
+    public ObjectProperty<BigDecimal> AngleProperty(){ return this.angle; }
+    public ObjectProperty<Point> CoordsProperty(){ return this.coords; }
+    public void setIsDown(Boolean state){this.isDown = state; }
+    public Boolean isDown(){return this.isDown; }
 
     public Mole(){
-        direction = Direction.RIGHT;
-        coords = new Coordinates(300,400);
+        angle.setValue(new BigDecimal(0));
+        coords.setValue(new Point(300,400));
+        isDown = Boolean.TRUE;
     }
 
-    public void execute(Command command){
-        switch (command.type){
-            case RIGHT:
-                for (int i=command.value; i>0; i=-90){
-                    direction = direction.turnRight();
-                }
-                break;
-            case LEFT:
-                for (int i=command.value; i>0; i=-90){
-                    direction = direction.turnLeft();
-                }
-                break;
-            case FORWARD:
-                switch (direction){
-                    case UP:
-                        coords = new Coordinates(coords,0,command.value);
-                        break;
-                    case DOWN:
-                        coords = new Coordinates(coords,0,-command.value);
-                        break;
-                    case LEFT:
-                        coords = new Coordinates(coords,-command.value,0);
-                        break;
-                    case RIGHT:
-                        coords = new Coordinates(coords,command.value,0);
-                        break;
-                }
-                break;
-            case BACKWARD:
-                switch (direction){
-                    case UP:
-                        coords = new Coordinates(coords,0,-command.value);
-                        break;
-                    case DOWN:
-                        coords = new Coordinates(coords,0,command.value);
-                        break;
-                    case LEFT:
-                        coords = new Coordinates(coords,command.value,0);
-                        break;
-                    case RIGHT:
-                        coords = new Coordinates(coords,-command.value,0);
-                        break;
-                }
-                break;
-        }
-        commands.add(command);
-
-    }
 
 
 
 }
+
+
+
+

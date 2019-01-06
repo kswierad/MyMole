@@ -1,1 +1,1 @@
-To run this project just go into the project main folder and type gradle run in console
+To run this project just go into the project main folder and type gradle run in console or alternatively you can import this int IntellJ as a gradle project and just run it from IntelIJ

@@ -19,7 +19,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("My first JavaFX app");
+        this.primaryStage.setTitle("MyMole App");
 
         initRootLayout();
     }
@@ -36,9 +36,11 @@ public class Main extends Application{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/main.fxml"));
             VBox rootLayout =  loader.load();
+            //loader.setLocation(Main.class.getResource("/levelUI.fxml"));
+            //rootLayout.getChildren().add(loader.load());
 
             // add layout to a scene and show them all
-            Scene scene = new Scene(rootLayout,800,800);
+            Scene scene = new Scene(rootLayout,1000,800);
 
             primaryStage.setScene(scene);
             primaryStage.show();

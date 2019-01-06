@@ -1,7 +1,4 @@
-pełna aplikacja
-pętla
-wiele komend na raz
-sprawdzanie poprawności
-5 lekcji
-łatowść definiowania lekcji
-przejście po kolejnych lekcjach
+proste procedury (bez argumentowe)
+lista poziomów (persystencja)
+ok 7 poziomów z pełną prezentacją możliwości
+testy
