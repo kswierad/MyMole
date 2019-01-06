@@ -10,7 +10,7 @@ import ch.obermuhlner.math.big.*;
 
 public class ForwardCommand implements Command {
 
-    MathContext mathContext = new MathContext(100);
+    MathContext mathContext = new MathContext(4);
 
     public ForwardCommand(int distance) {
         this.distance = distance;

@@ -7,7 +7,7 @@ import java.math.MathContext;
 
 public class LeftCommand implements Command {
 
-    MathContext mathContext = new MathContext(100);
+    MathContext mathContext = new MathContext(4);
     public LeftCommand(double angle) {
         this.angle = new BigDecimal(2*angle).divide(new BigDecimal(360),mathContext).multiply(BigDecimalMath.pi(mathContext));
     }

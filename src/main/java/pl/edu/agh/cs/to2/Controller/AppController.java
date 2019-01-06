@@ -154,10 +154,11 @@ public class AppController {
 
     public void setListenersOnMole(){
         mole.AngleProperty().addListener((ObservableValue<? extends BigDecimal> observableValue, BigDecimal number, BigDecimal t1) ->
+
                 clearAndDrawMole()
         );
         mole.CoordsProperty().addListener((ObservableValue<? extends Point> observableValue, Point point, Point t1) -> {
-            drawPath(point,t1);
+            if(mole.isDown()) drawPath(point,t1);
             clearAndDrawMole();
         });
     }

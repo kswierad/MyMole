@@ -7,7 +7,7 @@ import java.math.MathContext;
 
 public class RightCommand implements Command {
 
-    MathContext mathContext = new MathContext(100);
+    MathContext mathContext = new MathContext(4);
     private BigDecimal angle;
 
     public RightCommand(double angle){

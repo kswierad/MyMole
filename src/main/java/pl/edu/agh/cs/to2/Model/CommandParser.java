@@ -39,7 +39,11 @@ public class CommandParser {
                 commands.get(loopCounter).add(command);
                 loopCounter++;
                 commands.add(command.getCommands());
-            } else{
+            } else if (cmd.matches("[Dd][Oo][Ww][Nn]")) {
+                commands.get(loopCounter).add(new DownCommand());
+            } else if (cmd.matches("[Uu][Pp]")) {
+                commands.get(loopCounter).add(new UpCommand());
+            } else {
                 throw new ParseException("Couldn't resolve command type",0);
             }
 
